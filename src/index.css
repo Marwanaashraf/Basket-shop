@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+    color: #3E445A;
+}
+.link{
+    @apply p-3 font-bold uppercase
+}
+.active-link{
+    @apply text-main bg-sky-100 rounded-full p-3 font-bold uppercase
+}
