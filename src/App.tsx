@@ -11,6 +11,7 @@ import Login from "./Pages/auth/Login/Login";
 import Signup from "./Pages/auth/Signup/Signup";
 import Contact from "./Pages/Contact/Contact";
 import NotFound from "./Pages/NotFound/NotFound";
+import AddProduct from "./Pages/AddProduct/AddProduct";
 
 export default function App() {
   let routes = createBrowserRouter(
@@ -28,6 +29,7 @@ export default function App() {
           { path: "contact", element: <Contact /> },
           { path: "login", element: <Login /> },
           { path: "signup", element: <Signup /> },
+          { path: "add-product", element: <AddProduct /> },
           { path: "*", element: <NotFound /> },
         ],
       },
