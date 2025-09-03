@@ -1,5 +1,6 @@
 import axios from "axios";
 import { supabaseKey, supabaseUrl } from "../supabaseClient";
+import toast from "react-hot-toast";
 
 export async function searchProducts(query: string) {
   try {
@@ -15,6 +16,7 @@ export async function searchProducts(query: string) {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error)
+    toast.error("Error while searching products");
   }
 }

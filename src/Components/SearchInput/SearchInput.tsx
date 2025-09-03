@@ -1,33 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { searchProducts } from "../../Apis/searchProducts";
 import { product } from "../../Interfaces/IproductCard";
+import { ProductContext } from "../../Context/ProductContext";
 
 export default function SearchInput() {
+    let productContext = useContext(ProductContext);
+  
   let [filterProducts, setFilterProducts] = useState<product[]>([]);
   let [searchValue, setSearchValue] = useState<string>("");
   let [isLoading, setLoading] = useState<boolean>(false);
-  async function searchByName(e: React.KeyboardEvent<HTMLInputElement>) {
+  let [showResults, setShowResults] = useState(false);
+
+  async function searchByName(e: React.ChangeEvent<HTMLInputElement>) {
     let val: string = e.currentTarget.value;
-    let displaySearch: HTMLElement | null =
-      document.querySelector(".search-track");
     if (!val) {
       setLoading(false);
-      displaySearch?.classList.add("hidden");
     } else {
-      displaySearch?.classList.remove("hidden");
       setLoading(true);
       let filterProducts = await searchProducts(val);
       setFilterProducts(filterProducts);
       setSearchValue(val);
       setLoading(false);
+      setShowResults(true);
     }
   }
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      let searchTrack = document.getElementById("searchID");
+      
+      if (!searchTrack?.contains(e.target as Node)) {
+        setShowResults(false);
+      } else  {
+        setShowResults(true);
+      }
+    }
+    document.addEventListener("click", handleClick);
+  }, []);
   return (
-    <div className="relative w-7/12 hidden lg:block">
-      <div className="h-16 bg-gray-100 flex items-center justify-between rounded-lg p-3 ">
+    <div id="searchID" className="relative z-[90]">
+      {/* search input */}
+      <div className="search-input h-16 bg-gray-100 flex items-center justify-between rounded-lg p-3 ">
         <input
-          onKeyUp={searchByName}
-          className="w-96 text-xl text-black bg-transparent placeholder:text-gray-500 placeholder:font-normal focus:border-none focus:outline-none"
+          onChange={searchByName}
+          className="w-[90%] text-xl text-black bg-transparent placeholder:text-gray-500 placeholder:font-normal focus:border-none focus:outline-none"
           type="text"
           placeholder="Search for Products, fruit, meat, eggs .etc..."
         />
@@ -48,35 +63,41 @@ export default function SearchInput() {
           </svg>
         )}
       </div>
-      <div className="search-track hidden absolute bg-white w-full h-96 rounded-lg shadow-lg overflow-auto z-50 space-y-2 p-2">
-        {filterProducts.length == 0 ? (
-          <div>
-            <h3 className="font-semibold text-3xl my-5">
-              No results contain "
-              <span className="text-red-600">{searchValue}</span>"
-            </h3>
-          </div>
-        ) : (
-          filterProducts.map((item) => {
-            return (
-              <div className="flex space-x-3 w-full h-40 rounded-lg border border-solid border-gray-100 shadow-sm items-center p-3 cursor-pointer">
-                <img className="w-28" src={item.images[0]} alt={item.name} />
-                <div>
-                  <h3 className="font-bold">{item.name}</h3>
-                  <p className="line-clamp-3">{item.details}</p>
+
+      {/* search products */}
+      {showResults ? (
+        <div className="search-track  absolute bg-white w-full h-96 rounded-lg shadow-lg overflow-auto z-[10000] space-y-2 p-2">
+          {filterProducts.length == 0 && searchValue? (
+            <div>
+              <h3 className="font-semibold text-3xl my-5">
+                No results contain "
+                <span className="text-red-600">{searchValue}</span>"
+              </h3>
+            </div>
+          ) : (
+            filterProducts.map((item) => {
+              return (
+                <div onClick={()=>{productContext?.setProduct(item)}} key={item.id} className="flex space-x-3 w-full h-40 rounded-lg border border-solid border-gray-100 shadow-sm items-center p-3 cursor-pointer">
+                  <img className="w-28" src={item.images[0]} alt={item.name} />
+                  <div>
+                    <h3 className="font-bold">{item.name}</h3>
+                    <p className="line-clamp-3">{item.details}</p>
+                  </div>
+                  <h3 className="font-bold text-main">
+                    {(
+                      item.price -
+                      (item.price * item.discountPercentage) / 1000
+                    ).toFixed(2)}
+                    $
+                  </h3>
                 </div>
-                <h3 className="font-bold text-main">
-                  {(
-                    item.price -
-                    (item.price * item.discountPercentage) / 1000
-                  ).toFixed(2)}
-                  $
-                </h3>
-              </div>
-            );
-          })
-        )}
-      </div>
+              );
+            })
+          )}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

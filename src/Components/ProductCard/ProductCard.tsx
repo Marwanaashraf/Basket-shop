@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { product } from "../../Interfaces/IproductCard";
+import { ProductContext } from "../../Context/ProductContext";
 type Tproduct = {
   product: product;
 };
 export default function ProductCard({ product }: Tproduct) {
+  let productContext = useContext(ProductContext);
   return (
     <>
       <div
-        className="relative border border-solid border-gray-200 rounded-lg p-3 cursor-pointer hover:scale-[0.95] transition-all duration-300 flex flex-col justify-between"
-        key={product.id}  
+        onClick={() => {
+          productContext?.setProduct(product);
+        }}
+        className="relative border border-solid border-gray-200 rounded-lg p-3 cursor-pointer hover:scale-[0.95] transition-all duration-300 flex flex-col justify-between h-full"
+        key={product.id}
       >
         <img className="w-full" src={product.images[0]} alt={product.name} />
         <div className="space-y-1 ">
@@ -74,7 +79,7 @@ export default function ProductCard({ product }: Tproduct) {
           <div className=" text-center">
             <button className="btn">Add to cart</button>
           </div>
-          <div className="bg-main rounded-lg w-16 h-7 flex justify-center items-center text-white absolute top-1 right-1">
+          <div className="bg-red-600 rounded-full w-14 h-6 flex justify-center items-center text-white absolute top-1 right-1 text-sm">
             <h3>{product.discountPercentage.toFixed(2)}%</h3>
           </div>
         </div>

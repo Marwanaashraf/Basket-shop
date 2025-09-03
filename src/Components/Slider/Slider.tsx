@@ -1,9 +1,10 @@
 import React from "react";
-import SearchInput from "../SearchInput/SearchInput";
+
 import CategoriesBtn from "../CategoriesBtn/CategoriesBtn";
 import { NavLink } from "react-router-dom";
 import { Ilink } from "../../Interfaces/links";
 import { Islider } from "../../Interfaces/slider";
+import SearchInput from "../SearchInput/SearchInput";
 
 export default function Slider({ category, closeSlider }: Islider) {
   let links: Ilink[] = [
@@ -15,13 +16,17 @@ export default function Slider({ category, closeSlider }: Islider) {
     { pathName: "About us", pathLink: "/about" },
   ];
   return (
-    <section className="bg-white fixed top-0 bottom-0 left-0 right-0 z-50">
+    <section className="block lg:hidden bg-white fixed top-0 bottom-0 left-0 right-0 z-50">
       <div className="py-10 w-[90%] mx-auto">
         {/* close icon */}
-        <div onClick={closeSlider}>
-          <i className="fa-solid fa-x text-main text-lg cursor-pointer"></i>
+        <div>
+          <i onClick={closeSlider} className="fa-solid fa-x text-main text-lg cursor-pointer"></i>
         </div>
-        <div className="h-16 bg-gray-100 flex items-center justify-between rounded-lg w-full p-3 my-4">
+        <div className="my-6 block w-full ">
+
+        <SearchInput/>
+        </div>
+        {/* <div className="h-16 bg-gray-100 flex items-center justify-between rounded-lg w-full p-3 my-4">
           <input
             className="w-96 text-xl text-black bg-transparent placeholder:text-gray-500 placeholder:font-normal focus:border-none focus:outline-none"
             type="text"
@@ -39,13 +44,13 @@ export default function Slider({ category, closeSlider }: Islider) {
               fill="#3E445A"
             />
           </svg>
-        </div>
-        <CategoriesBtn
+        </div> */}
+        {/* <CategoriesBtn
           isCategories={category.isCategories}
           setIsCategories={category.setIsCategories}
           dropDown={category.dropDown}
-        />
-        <ul className="list-none flex flex-col space-y-6 h-96 my-5">
+        /> */}
+        <ul className="list-none flex flex-col space-y-6 h-96 my-10">
           {links.map((item) => {
             return (
               <li key={item.pathName}>

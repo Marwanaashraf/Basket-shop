@@ -12,6 +12,8 @@ import Signup from "./Pages/auth/Signup/Signup";
 import Contact from "./Pages/Contact/Contact";
 import NotFound from "./Pages/NotFound/NotFound";
 import AddProduct from "./Pages/AddProduct/AddProduct";
+import { UserProvider } from "./Context/UserContext";
+import { ProductProvider } from "./Context/ProductContext";
 
 export default function App() {
   let routes = createBrowserRouter(
@@ -38,7 +40,11 @@ export default function App() {
   );
   return (
     <>
-      <RouterProvider router={routes}></RouterProvider>
+      <UserProvider>
+        <ProductProvider>
+          <RouterProvider router={routes}></RouterProvider>
+        </ProductProvider>
+      </UserProvider>
     </>
   );
 }

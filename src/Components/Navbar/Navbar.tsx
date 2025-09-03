@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { Link, NavLink, NavLinkRenderProps, useNavigate } from "react-router-dom";
-import logo from "../../assets/Images/logo-Zm88lW5l.png";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import logo from "../../assets/Images/logo/logo-Zm88lW5l.png";
 import SearchInput from "../SearchInput/SearchInput";
 import CategoriesBtn from "../CategoriesBtn/CategoriesBtn";
 import Slider from "../Slider/Slider";
 import { Ilink } from "../../Interfaces/links";
+import { User } from "../../Context/UserContext";
+import "./Navbar.css";
 export default function Navbar() {
-  let navigate = useNavigate()
+  const userContext = useContext(User);
+
+  let navigate = useNavigate();
   //profile icon
   let [isProfile, setIsProfile] = useState<boolean>(false);
   //categories btn
@@ -32,6 +36,16 @@ export default function Navbar() {
     { pathName: "Blog", pathLink: "/blog" },
     { pathName: "Contact", pathLink: "/contact" },
   ];
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      {
+        let profile = document.querySelector("#profile");
+        if (!profile?.contains(e.target as Node)) {
+          setIsProfile(false);
+        }
+      }
+    });
+  }, []);
   return (
     <nav>
       {/* part1 */}
@@ -75,7 +89,10 @@ export default function Navbar() {
       <div className="w-full lg:w-[90%] mx-auto py-3 shadow-lg lg:shadow-none">
         <div className="flex flex-wrap justify-evenly p-2 items-center ">
           {/* list */}
-          <div onClick={openSlider} className="cursor-pointer text-main block lg:hidden">
+          <div
+            onClick={openSlider}
+            className="cursor-pointer text-main block lg:hidden"
+          >
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -99,16 +116,18 @@ export default function Navbar() {
             </Link>
           </div>
           {/* search */}
-          <SearchInput />
+          <div className="hidden lg:block w-7/12">
+            <SearchInput />
+          </div>
           {/* profile,cart */}
           <div className="flex space-x-2 items-center">
             {/* profile */}
-            <div className="relative">
+            <div id="profile" className="relative">
               <div
                 onClick={() => {
                   dropDown(isProfile, setIsProfile);
                 }}
-                className="w-11 h-11 rounded-full boder border-solid border-red-600 bg-slate-100 flex justify-center items-center cursor-pointer"
+                className="w-11 h-11 rounded-full border border-solid  border-gray-300 flex justify-center items-center cursor-pointer"
               >
                 <svg
                   width="17"
@@ -125,25 +144,49 @@ export default function Navbar() {
               </div>
               {/* drop down profile */}
               {isProfile ? (
-                <div className="profile-dropdown absolute top-12 w-40 md:w-56 h-24 bg-white shadow-lg border border-solid border-gray-200 rounded-xl flex flex-col justify-evenly p-2">
-                  <Link
-                    onClick={() => {
-                      setIsProfile(false);
-                    }}
-                    className="font-semibold hover:bg-gray-100 p-2 rounded-sm transition-all duration-300 cursor-pointer"
-                    to="/login"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    onClick={() => {
-                      setIsProfile(false);
-                    }}
-                    className="font-semibold hover:bg-gray-100 p-2 rounded-sm transition-all duration-300 cursor-pointer"
-                    to="/signup"
-                  >
-                    Signup
-                  </Link>
+                <div
+                  
+                  className={
+                    localStorage.getItem("tokenuser")
+                      ? "logout-dropdown"
+                      : "profile-dropdown"
+                  }
+                >
+                  {localStorage.getItem("tokenuser") ? (
+                    <Link
+                      onClick={() => {
+                        setIsProfile(false);
+                        localStorage.removeItem("tokenuser");
+                        userContext?.updateAuth(null);
+                      }}
+                      className="font-semibold hover:bg-gray-100 p-2 rounded-sm transition-all duration-300 cursor-pointer"
+                      to="/login"
+                    >
+                      Logout
+                    </Link>
+                  ) : (
+                    <>
+                      <Link
+                        onClick={() => {
+                          setIsProfile(false);
+                        }}
+                        className="font-semibold hover:bg-gray-100 p-2 rounded-sm transition-all duration-300 cursor-pointer"
+                        to="/login"
+                      >
+                        Login
+                      </Link>
+
+                      <Link
+                        onClick={() => {
+                          setIsProfile(false);
+                        }}
+                        className="font-semibold hover:bg-gray-100 p-2 rounded-sm transition-all duration-300 cursor-pointer"
+                        to="/signup"
+                      >
+                        Signup
+                      </Link>
+                    </>
+                  )}
                 </div>
               ) : (
                 ""
@@ -152,7 +195,12 @@ export default function Navbar() {
             {/* total price */}
             <h3 className="font-semibold">$00.00</h3>
             {/* cart */}
-            <div onClick={()=>{navigate("/cart")}} className="relative cursor-pointer w-11 h-11 rounded-full  bg-red-100 flex justify-center items-center">
+            <div
+              onClick={() => {
+                navigate("/cart");
+              }}
+              className="relative cursor-pointer w-11 h-11 rounded-full  bg-red-100 flex justify-center items-center"
+            >
               <svg
                 width="18"
                 height="18"
@@ -183,36 +231,39 @@ export default function Navbar() {
           {/* links */}
           <ul className="list-none flex justify-evenly w-[70%]">
             {links.map((item) => {
-                        return (
-                          <li key={item.pathName}>
-                            <NavLink
-                              className={({ isActive }) =>
-                                isActive ? "active-link" : "link"
-                              }
-                              to={item.pathLink}
-                            >
-                              {item.pathName}{" "}
-                              {item.pathName == "Home" ? (
-                                <i className="fa-solid fa-angle-down"></i>
-                              ) : (
-                                ""
-                              )}
-                            </NavLink>
-                          </li>
-                        );
-                      })}
+              return (
+                <li key={item.pathName}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "active-link" : "link"
+                    }
+                    to={item.pathLink}
+                  >
+                    {item.pathName}{" "}
+                    {item.pathName == "Home" ? (
+                      <i className="fa-solid fa-angle-down"></i>
+                    ) : (
+                      ""
+                    )}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
-      {isSlider ? <Slider
-        category={{
-          isCategories: isCategories,
-          setIsCategories: setIsCategories,
-          dropDown: dropDown,
-        }}
-        closeSlider={closeSlider}
-      /> : ""}
-     
+      {isSlider ? (
+        <Slider
+          category={{
+            isCategories: isCategories,
+            setIsCategories: setIsCategories,
+            dropDown: dropDown,
+          }}
+          closeSlider={closeSlider}
+        />
+      ) : (
+        ""
+      )}
     </nav>
   );
 }

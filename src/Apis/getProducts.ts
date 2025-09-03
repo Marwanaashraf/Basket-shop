@@ -1,5 +1,6 @@
 import axios from "axios";
 import { supabaseKey, supabaseUrl } from "../supabaseClient";
+import toast from "react-hot-toast";
 
 export async function getProducts() {
   try {
@@ -14,6 +15,7 @@ export async function getProducts() {
     });
     return data;
   } catch (error) {
+    toast.error(`error`)
     console.log(error);
   }
 }

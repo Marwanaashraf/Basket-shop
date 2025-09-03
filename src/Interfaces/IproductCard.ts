@@ -10,4 +10,5 @@ export interface product {
   tags: string[];
   images: string[];
   inStock: boolean;
+  stockstatus:string
 }

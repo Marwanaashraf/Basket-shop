@@ -44,6 +44,7 @@ export default function AddProduct() {
       tags: values.tags.split(","),
       images: values.images.split(","),
       inStock: values.inStock,
+      stockstatus:values.inStock? "inStock": "outOfStock"
     };
     addProduct(product, setLoading);
   }

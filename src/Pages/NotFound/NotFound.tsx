@@ -1,5 +1,5 @@
 import React from "react";
-import notFound from "../../assets/Images/error.svg";
+import notFound from "../../assets/Images/error/error.svg";
 import { useNavigate } from "react-router-dom";
 export default function NotFound() {
   let navigate = useNavigate()
