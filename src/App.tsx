@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Pages/Layout/Layout";
 import Home from "./Pages/Home/Home";
@@ -14,8 +14,10 @@ import NotFound from "./Pages/NotFound/NotFound";
 import AddProduct from "./Pages/AddProduct/AddProduct";
 import { UserProvider } from "./Context/UserContext";
 import { ProductProvider } from "./Context/ProductContext";
+import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 
 export default function App() {
+  let [showShare, setShowShare] = useState<boolean>(false);
   let routes = createBrowserRouter(
     [
       {
@@ -28,6 +30,7 @@ export default function App() {
           { path: "cart", element: <Cart /> },
           { path: "blog", element: <Blog /> },
           { path: "shop", element: <Shop /> },
+          { path: "product/:productId", element: <ProductDetail showShare={showShare} setShare={setShowShare} /> },
           { path: "contact", element: <Contact /> },
           { path: "login", element: <Login /> },
           { path: "signup", element: <Signup /> },

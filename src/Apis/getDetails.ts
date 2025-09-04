@@ -1,8 +1,7 @@
 import axios from "axios";
 import { supabaseKey, supabaseUrl } from "../supabaseClient";
-import toast from "react-hot-toast";
 
-export async function getProducts() {
+export async function getProductDetails(id: string | undefined) {
   try {
     let { data } = await axios.get(`${supabaseUrl}/rest/v1/products`, {
       headers: {
@@ -11,10 +10,11 @@ export async function getProducts() {
       },
       params: {
         select: "*",
+        id: `eq.${id}`,
       },
     });
-    return data;
+    return data[0] 
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

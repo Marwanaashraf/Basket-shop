@@ -1,5 +1,4 @@
-export interface product {
-  id: string;
+export interface productSend {
   name: string;
   category: string;
   brand: string;
@@ -10,6 +9,5 @@ export interface product {
   tags: string[];
   images: string[];
   inStock: boolean;
-  stockstatus: string;
   quantity: number;
 }

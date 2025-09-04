@@ -1,9 +1,9 @@
 import axios from "axios";
 import { supabaseKey, supabaseUrl } from "../supabaseClient";
 import toast from "react-hot-toast";
-import { product } from "../Interfaces/IproductCard";
+import { productSend } from "../Interfaces/SendProduct";
 
-export async function addProduct(product: product, setLoading: Function) {
+export async function addProduct(product: productSend, setLoading: Function) {
   try {
     setLoading(true);
     let { data } = await axios.post(
@@ -19,7 +19,9 @@ export async function addProduct(product: product, setLoading: Function) {
     );
     setLoading(false);
     toast.success("product added successfully");
-  } catch (error) {
+  } catch (error :any) {
     setLoading(false);
+    console.log(error?.response?.data);
+    toast.error("Failed to add product please try again");
   }
 }

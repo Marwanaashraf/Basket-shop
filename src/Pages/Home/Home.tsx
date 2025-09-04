@@ -27,6 +27,7 @@ import grid6 from "../../assets/Images/Home/icecream.png";
 import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../../Context/ProductContext";
 import ProductDetails from "../../Components/ProductDetails/ProductDetails";
+import toast, { Toaster } from "react-hot-toast";
 export default function Home() {
   let productContext = useContext(ProductContext);
 
@@ -84,15 +85,21 @@ export default function Home() {
   ];
   async function getData() {
     setLoading(true);
-    let allProducts = await getProducts();
-    setProducts(allProducts);
-    setLoading(false);
+    let allProducts = await getProducts().catch((error: any) => {
+      setLoading(true);
+      toast.error(error?.message);
+    });
+    if (allProducts) {
+      setProducts(allProducts);
+      setLoading(false);
+    }
   }
   useEffect(() => {
     getData();
   }, []);
   return (
     <>
+      <Toaster position="top-center" />
       {isLoading ? (
         <Loading />
       ) : (
@@ -229,6 +236,9 @@ export default function Home() {
                   {bigOffer.map((product) => {
                     return (
                       <div
+                        onClick={() => {
+                          productContext?.setProduct(product);
+                        }}
                         key={product.id}
                         className=" relative cursor-pointer "
                       >
@@ -303,7 +313,7 @@ export default function Home() {
                             <h3 className="text-gray-400">
                               Available:{" "}
                               <span className="font-semibold text-blue-800">
-                                26
+                                {product.quantity}
                               </span>
                             </h3>
                             <img src={bar} alt="bar" />

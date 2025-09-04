@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
 import { addProduct } from "../../Apis/addProduct";
 import { productForm } from "../../Interfaces/productForm";
-import { product } from "../../Interfaces/IproductCard";
+import { productSend } from "../../Interfaces/SendProduct";
 
 export default function AddProduct() {
   let [isLoading, setLoading] = useState<boolean>(false);
@@ -19,6 +19,7 @@ export default function AddProduct() {
     tags: Yup.string().required("tags is required"),
     images: Yup.string().required("images is required"),
     inStock: Yup.boolean().required("inStock is required"),
+    quantity: Yup.string().required("quantity is required"),
   });
   let initialValues: productForm = {
     name: "",
@@ -30,10 +31,11 @@ export default function AddProduct() {
     details: "",
     tags: "",
     images: "",
+    quantity: "",
     inStock: true,
   };
   function submitForm(values: productForm) {
-    let product: product = {
+    let product: productSend = {
       name: values.name,
       category: values.category,
       brand: values.brand,
@@ -44,8 +46,9 @@ export default function AddProduct() {
       tags: values.tags.split(","),
       images: values.images.split(","),
       inStock: values.inStock,
-      stockstatus:values.inStock? "inStock": "outOfStock"
+      quantity: Number(values.quantity),
     };
+
     addProduct(product, setLoading);
   }
   let formik = useFormik<productForm>({
@@ -250,20 +253,45 @@ export default function AddProduct() {
             <label className="text-xl capitalize" htmlFor="pStock">
               product Stock
             </label>
-            <br />
-            <input
+            <select
               className="form-input"
               name="inStock"
               id="pStock"
-              placeholder="Enter inStock"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-            />
+            >
+              <option value="true">In Stock</option>
+              <option value="false">Out of Stock</option>
+            </select>
 
             {formik.errors.inStock && formik.touched.inStock ? (
               <h4 className="text-red-600 text-lg">
                 <i className="fa-regular fa-circle-xmark"></i>{" "}
                 {formik.errors.inStock}
+              </h4>
+            ) : (
+              ""
+            )}
+          </div>
+
+          <div className="my-3">
+            <label className="text-xl capitalize" htmlFor="quantity">
+              Quantity
+            </label>
+            <br />
+            <input
+              className="form-input"
+              name="quantity"
+              id="quantity"
+              placeholder="Enter product quantity"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            ></input>
+
+            {formik.errors.quantity && formik.touched.quantity ? (
+              <h4 className="text-red-600 text-lg">
+                <i className="fa-regular fa-circle-xmark"></i>{" "}
+                {formik.errors.quantity}
               </h4>
             ) : (
               ""

@@ -8,5 +8,6 @@ export interface productForm {
   details: string;
   tags: string;
   images: string;
-  inStock: boolean
+  inStock: boolean;
+  quantity: string;
 }
