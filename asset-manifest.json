@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Basket-shop/static/css/main.c4685aa1.css",
-    "main.js": "/Basket-shop/static/js/main.501562c0.js",
+    "main.css": "/Basket-shop/static/css/main.bdcb94d9.css",
+    "main.js": "/Basket-shop/static/js/main.3c0aeb6e.js",
     "static/js/453.dfe4c181.chunk.js": "/Basket-shop/static/js/453.dfe4c181.chunk.js",
     "static/media/slide1.png": "/Basket-shop/static/media/slide1.78dc702b629cef76ef3e.png",
     "static/media/drinks.png": "/Basket-shop/static/media/drinks.4db49dfe12fcc8e18684.png",
@@ -33,12 +33,12 @@
     "static/media/slick.ttf": "/Basket-shop/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/Basket-shop/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Basket-shop/index.html",
-    "main.c4685aa1.css.map": "/Basket-shop/static/css/main.c4685aa1.css.map",
-    "main.501562c0.js.map": "/Basket-shop/static/js/main.501562c0.js.map",
+    "main.bdcb94d9.css.map": "/Basket-shop/static/css/main.bdcb94d9.css.map",
+    "main.3c0aeb6e.js.map": "/Basket-shop/static/js/main.3c0aeb6e.js.map",
     "453.dfe4c181.chunk.js.map": "/Basket-shop/static/js/453.dfe4c181.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4685aa1.css",
-    "static/js/main.501562c0.js"
+    "static/css/main.bdcb94d9.css",
+    "static/js/main.3c0aeb6e.js"
   ]
 }
