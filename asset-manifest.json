@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Basket-shop/static/css/main.bdcb94d9.css",
-    "main.js": "/Basket-shop/static/js/main.3c0aeb6e.js",
-    "static/js/453.dfe4c181.chunk.js": "/Basket-shop/static/js/453.dfe4c181.chunk.js",
+    "main.css": "/Basket-shop/static/css/main.ffc535df.css",
+    "main.js": "/Basket-shop/static/js/main.976ce780.js",
+    "static/js/453.38aeb462.chunk.js": "/Basket-shop/static/js/453.38aeb462.chunk.js",
     "static/media/slide1.png": "/Basket-shop/static/media/slide1.78dc702b629cef76ef3e.png",
     "static/media/drinks.png": "/Basket-shop/static/media/drinks.4db49dfe12fcc8e18684.png",
     "static/media/slide2.png": "/Basket-shop/static/media/slide2.0befceff39f92be05ccf.png",
@@ -28,17 +28,13 @@
     "static/media/fa-regular-400.woff2": "/Basket-shop/static/media/fa-regular-400.5632c43107f4d3fa4806.woff2",
     "static/media/perfuem.webp": "/Basket-shop/static/media/perfuem.7e006d2a1deb62b49233.webp",
     "static/media/fa-v4compatibility.woff2": "/Basket-shop/static/media/fa-v4compatibility.24fc9d217708cb3f0362.woff2",
-    "static/media/slick.svg": "/Basket-shop/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/Basket-shop/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/Basket-shop/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/Basket-shop/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Basket-shop/index.html",
-    "main.bdcb94d9.css.map": "/Basket-shop/static/css/main.bdcb94d9.css.map",
-    "main.3c0aeb6e.js.map": "/Basket-shop/static/js/main.3c0aeb6e.js.map",
-    "453.dfe4c181.chunk.js.map": "/Basket-shop/static/js/453.dfe4c181.chunk.js.map"
+    "main.ffc535df.css.map": "/Basket-shop/static/css/main.ffc535df.css.map",
+    "main.976ce780.js.map": "/Basket-shop/static/js/main.976ce780.js.map",
+    "453.38aeb462.chunk.js.map": "/Basket-shop/static/js/453.38aeb462.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bdcb94d9.css",
-    "static/js/main.3c0aeb6e.js"
+    "static/css/main.ffc535df.css",
+    "static/js/main.976ce780.js"
   ]
 }
