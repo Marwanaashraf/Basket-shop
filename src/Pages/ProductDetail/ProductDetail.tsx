@@ -5,9 +5,16 @@ import { getProductDetails } from "../../Apis/getDetails";
 import toast from "react-hot-toast";
 import Loading from "../../Components/Loading/Loading";
 import { getRelatedProducts } from "../../Apis/getRelatedProducts";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 import { ProductContext } from "../../Context/ProductContext";
 import SharePage from "../../Components/SharePage/SharePage";
+import SwiperCaursol from "../../Components/SwiperCaursol/SwiperCaursol";
+import NavButton from "../../Components/NavButton/NavButton";
+import RelatedProduct from "../../Components/RelatedProduct/RelatedProduct";
 type ProductDetailProps = {
   showShare: boolean;
   setShare: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,8 +23,9 @@ export default function ProductDetail({
   setShare,
   showShare,
 }: ProductDetailProps) {
+  // display product
   let product = useContext(ProductContext);
-  //   let [product, setProduct] = useState<product>();
+  // loading
   let [isLoading, setLoading] = useState<boolean>(false);
   //related products
   let [relatedProducts, setRelatedProducts] = useState<product[]>();
@@ -27,40 +35,6 @@ export default function ProductDetail({
   let [img, setImg] = useState<string | null>(null);
   //read more details
   let [readMore, setReadMore] = useState(true);
-
-  //settings
-  let settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
   let { productId } = useParams();
   let navigate = useNavigate();
   async function getData() {
@@ -108,22 +82,7 @@ export default function ProductDetail({
       setReadMore(true);
     }
   }
-  //get related products by category
-  //   async function getRelated() {
-
-  //   }
-  // //get product details from related products
-  //   function handleRelatedProduct(productData: product) {
-  //     if (productData.id === productId) {
-  //       return;
-  //     } else {
-
-  //       setLoading(true);
-  //       product?.setProduct(productData);
-  //       productId = productData.id
-  //       setLoading(false);
-  //     }
-  //   }
+  
   async function handleRelatedProduct(productData: product) {
     navigate(`/product/${productData.id}`);
     setLoading(true);
@@ -147,8 +106,7 @@ export default function ProductDetail({
       setImg(imgSlide.current?.getAttribute("src"));
     }
   }, []);
-  //   useEffect(() => {
-  //   }, []);
+ 
   return (
     <>
       {isLoading ? (
@@ -375,76 +333,52 @@ export default function ProductDetail({
                 </div>
               </div>
             </div>
+
             {/* related products */}
             {relatedProducts ? (
               <div className="contain">
                 <h3 className="font-bold text-lg">Related products</h3>
-                <div className="w-[92%] mx-auto">
-                  <Slider className="p-4 my-5 " {...settings}>
-                    {relatedProducts?.map((item) => {
+                <div className="w-[92%] mx-auto relative">
+                  <Swiper
+                    spaceBetween={15}
+                    navigation={{
+                      prevEl: ".custom-prev",
+                      nextEl: ".custom-next",
+                    }}
+                    modules={[Navigation]}
+                    breakpoints={{
+                      320: { slidesPerView: 2 },
+                      640: { slidesPerView: 3 },
+                      1024: { slidesPerView: 4 },
+                    }}
+                  >
+                    {relatedProducts.map((item) => {
                       return (
-                        <div className="px-1 h-full ">
-                          <div
-                            key={item.id}
-                            className="border border-gray-200 relative px-2 rounded-lg p-2  h-full "
-                          >
-                            <div className="relative">
-                              <img
-                                className="w-full"
-                                src={item.images[0]}
-                                alt={item.name}
-                              />
-                              <div
-                                onClick={() => {
-                                  handleRelatedProduct(item);
-                                }}
-                                className="absolute bottom-0 right-0 bg-main w-8 h-8 rounded-full flex justify-center items-center text-white cursor-pointer"
-                              >
-                                {product?.productDetails?.id === item.id ? (
-                                  <i className="fa-regular fa-eye"></i>
-                                ) : (
-                                  <i className="fa-solid fa-plus"></i>
-                                )}
-                              </div>
-                            </div>
-
-                            <div className="my-2">
-                              <div className="font-semibold flex space-x-1 text-xs md:text-sm">
-                                <del className="text-gray-400">
-                                  ${item.price.toFixed(0)}
-                                </del>
-                                <h3 className="text-black">
-                                  $
-                                  {(
-                                    item.price -
-                                    (item.price * item.discountPercentage) / 100
-                                  ).toFixed(0)}
-                                </h3>
-                              </div>
-                              <h3 className="text-base font-medium">
-                                {item.name.split(" ").slice(0, 2).join(" ")}
-                              </h3>
-                            </div>
-
-                            {item.inStock ? (
-                              <div className="bg-main rounded-full w-14 h-6 flex justify-center items-center text-white absolute top-1 left-1 text-xs">
-                                <h3 className="uppercase font-medium">
-                                  on Sale
-                                </h3>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        </div>
+                        <SwiperSlide>
+                          <RelatedProduct
+                            product={item}
+                            compareId={product?.productDetails?.id}
+                            handleRelatedProduct={handleRelatedProduct}
+                          />
+                        </SwiperSlide>
                       );
                     })}
-                  </Slider>
+                  </Swiper>
+                  <NavButton
+                    className={"custom-prev absolute top-1/2 -left-10 "}
+                    icon={<i className="fa-solid fa-chevron-left"></i>}
+                  />
+                  <NavButton
+                    className={"custom-next absolute top-1/2 -right-10 "}
+                    icon={<i className="fa-solid fa-chevron-right"></i>}
+                  />
                 </div>
               </div>
             ) : (
               ""
             )}
+
+            {/* share  */}
             {showShare ? (
               <SharePage url={`${window.location}`} setShare={setShare} />
             ) : (

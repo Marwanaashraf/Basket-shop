@@ -13,7 +13,7 @@ export default function ProductCard({ product }: Tproduct) {
           productContext?.setProduct(product);
         }}
         className="relative border border-solid border-gray-200 rounded-lg p-3 cursor-pointer hover:scale-[0.95] transition-all duration-300 flex flex-col justify-between h-full"
-        key={product.id}
+      
       >
         <img className="w-full " src={product.images[0]} alt={product.name} />
         <div className="space-y-1 ">

@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import Slider from "react-slick";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { product } from "../../Interfaces/IproductCard";
 import { getProducts } from "../../Apis/getProducts";
 import Loading from "../../Components/Loading/Loading";
@@ -28,44 +31,14 @@ import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../../Context/ProductContext";
 import ProductDetails from "../../Components/ProductDetails/ProductDetails";
 import toast, { Toaster } from "react-hot-toast";
+import SwiperCaursol from "../../Components/SwiperCaursol/SwiperCaursol";
+import NavButton from "../../Components/NavButton/NavButton";
 export default function Home() {
   let productContext = useContext(ProductContext);
-
   let [products, setProducts] = useState<product[]>([]);
   let [isLoading, setLoading] = useState<boolean>(true);
   let navigate = useNavigate();
-  let settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  let sliders: string[] = [slide1, slide2, slide3];
   let bigOffer = products
     .sort((a, b) => b.discountPercentage - a.discountPercentage)
     .slice(0, 1);
@@ -104,70 +77,67 @@ export default function Home() {
         <Loading />
       ) : (
         <>
-          <Slider
-            arrows={false}
-            dots={true}
-            autoplay={true}
-            autoplaySpeed={3000}
-            className="Slider"
-          >
-            <div className="text-black relative">
-              <img
-                className="w-full h-[500px] object-cover "
-                src={slide1}
-                alt="slider"
-              />
-              <div className="space-y-4 ms-20 absolute top-24  sm:top-28 left-2 md:left-10">
-                <div className="flex items-center space-x-1 ">
-                  <span className="uppercase font-semibold">
-                    Exclusive Offer
-                  </span>
-                  <div className="rounded-full bg-gradient-to-r from-[#00B85333] to-transparent text-green-700 w-24 h-9 flex justify-center items-center">
-                    <span className="font-semibold">-20% OFF</span>
-                  </div>
-                </div>
-                <h1 className="text-4xl sm:text-5xl font-bold ">
-                  Specialist in the <br /> grocery store
-                </h1>
-                <p>Only this week. Don’t miss...</p>
-                <p>
-                  from{" "}
-                  <span className="text-red-600 font-bold text-3xl">$7.99</span>
-                </p>
-                <button className="bg-main w-32 h-10 text-white rounded-full">
-                  Shop Now <i className="fa-solid fa-arrow-right-long"></i>
-                </button>
-              </div>
-            </div>
-            <div className="text-black relative">
-              <img
-                className="w-full h-[500px] object-cover "
-                src={slide2}
-                alt="slider"
-              />
-              <div className="space-y-4 ms-20 absolute top-28 left-2 md:left-10">
-                <div className="flex items-center space-x-1 ">
-                  <span className="uppercase font-semibold">
-                    Exclusive Offer
-                  </span>
-                  <div className="rounded-full bg-gradient-to-r from-[#00B85333] to-transparent text-green-700 w-24 h-9 flex justify-center items-center">
-                    <span className="font-semibold">-20% OFF</span>
-                  </div>
-                </div>
-                <h1 className="text-5xl font-bold ">
-                  Specialist in the <br /> grocery store
-                </h1>
-                <p>Only this week. Don’t miss...</p>
-                <p>
-                  from{" "}
-                  <span className="text-red-600 font-bold text-3xl">$7.99</span>
-                </p>
-                <button className="bg-main w-32 h-10 text-white rounded-full">
-                  Shop Now <i className="fa-solid fa-arrow-right-long"></i>
-                </button>
-              </div>
-            </div>
-          </Slider>
+          <div className="relative">
+            <Swiper
+              slidesPerView={1}
+              loop={true}
+              autoplay={{
+                delay: 2000,
+              }}
+              navigation={{
+                prevEl: ".custom-prev",
+                nextEl: ".custom-next",
+              }}
+              pagination={true}
+              modules={[Navigation,Autoplay ,Pagination]}
+            >
+              {sliders.map((item) => {
+                return (
+                  <SwiperSlide>
+                    <div
+                      key={item}
+                      style={{ backgroundImage: `url(${item})` }}
+                      className="w-full h-[500px] text-black flex items-center bg-cover"
+                    >
+                      <div className="space-y-4 ms-32">
+                        <div className="flex items-center space-x-1 ">
+                          <span className="uppercase font-semibold">
+                            Exclusive Offer
+                          </span>
+                          <div className="rounded-full bg-gradient-to-r from-[#00B85333] to-transparent text-green-700 w-24 h-9 flex justify-center items-center">
+                            <span className="font-semibold">-20% OFF</span>
+                          </div>
+                        </div>
+                        <h1 className="text-4xl sm:text-5xl font-bold ">
+                          Specialist in the <br /> grocery store
+                        </h1>
+                        <p>Only this week. Don’t miss...</p>
+                        <p>
+                          from{" "}
+                          <span className="text-red-600 font-bold text-3xl">
+                            $7.99
+                          </span>
+                        </p>
+                        <button className="bg-main w-32 h-10 text-white rounded-full">
+                          Shop Now{" "}
+                          <i className="fa-solid fa-arrow-right-long"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <NavButton
+              className={"custom-prev absolute top-1/2 left-3 "}
+              icon={<i className="fa-solid fa-chevron-left"></i>}
+            />
+            <NavButton
+              className={"custom-next absolute top-1/2 right-3 "}
+              icon={<i className="fa-solid fa-chevron-right"></i>}
+            />
+          </div>
+
           <section className="contain my-20">
             {/* categories */}
             <section className="categories grid grid-cols-1 lg:grid-cols-5  gap-0">
@@ -408,21 +378,21 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <Slider
-                className="my-7  p-4 w-[85%] sm:w-[95%] mx-auto"
-                {...settings}
-              >
-                {products
-                  .sort((a, b) => a.price - b.price)
-                  .slice(0, 10)
+              <div className="my-7 w-[90%] mx-auto">
+                <SwiperCaursol
+                  products={products
+                    .sort((a, b) => a.price - b.price)
+                    .slice(0, 10)}
+                />
+                {/* {
                   .map((item) => {
                     return (
                       <div key={item.id} className="px-1">
                         <ProductCard product={item} />
                       </div>
                     );
-                  })}
-              </Slider>
+                  })} */}
+              </div>
             </section>
 
             {/* Super discount for your first purchase. */}
