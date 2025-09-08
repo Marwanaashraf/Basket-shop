@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/Marwanaashraf/Basket-shop/static/css/main.e1c27227.css",
+    "main.js": "/Marwanaashraf/Basket-shop/static/js/main.44c262bc.js",
+    "static/js/453.dfe4c181.chunk.js": "/Marwanaashraf/Basket-shop/static/js/453.dfe4c181.chunk.js",
+    "static/media/Avoutimg.png": "/Marwanaashraf/Basket-shop/static/media/Avoutimg.f435b97dd4d23443895b.png",
+    "static/media/slide1.png": "/Marwanaashraf/Basket-shop/static/media/slide1.78dc702b629cef76ef3e.png",
+    "static/media/drinks.png": "/Marwanaashraf/Basket-shop/static/media/drinks.4db49dfe12fcc8e18684.png",
+    "static/media/slide2.png": "/Marwanaashraf/Basket-shop/static/media/slide2.0befceff39f92be05ccf.png",
+    "static/media/about-people.jpg.png": "/Marwanaashraf/Basket-shop/static/media/about-people.jpg.799833bb658690bb89ab.png",
+    "static/media/bgShop-CugBvGr8.png": "/Marwanaashraf/Basket-shop/static/media/bgShop-CugBvGr8.7eee2a1d133e96e8d929.png",
+    "static/media/pergale.png": "/Marwanaashraf/Basket-shop/static/media/pergale.d20a8681599fd0e30dbb.png",
+    "static/media/icecream.png": "/Marwanaashraf/Basket-shop/static/media/icecream.cbe35b251cae9e824702.png",
+    "static/media/home.webp": "/Marwanaashraf/Basket-shop/static/media/home.b7cd4fc13757761a2e04.webp",
+    "static/media/slide3.png": "/Marwanaashraf/Basket-shop/static/media/slide3.128dc7a4214f7b2375a5.png",
+    "static/media/fa-solid-900.woff2": "/Marwanaashraf/Basket-shop/static/media/fa-solid-900.f54756da1f3d1b88887f.woff2",
+    "static/media/error.svg": "/Marwanaashraf/Basket-shop/static/media/error.d1c816124952392560da8de0e6c728b4.svg",
+    "static/media/fa-brands-400.woff2": "/Marwanaashraf/Basket-shop/static/media/fa-brands-400.1f6bad931d92a0a52c45.woff2",
+    "static/media/eggs.png": "/Marwanaashraf/Basket-shop/static/media/eggs.fb9aa029999c90ec933f.png",
+    "static/media/groceries.webp": "/Marwanaashraf/Basket-shop/static/media/groceries.c21247f3524c3cb8b533.webp",
+    "static/media/coupon.png.png": "/Marwanaashraf/Basket-shop/static/media/coupon.png.d9dc68f83250d580fc56.png",
+    "static/media/d3d7b0fa-DkOX36JB.png": "/Marwanaashraf/Basket-shop/static/media/aeb9763b1145b3dd6e2fadd6c2b27941d3d7b0fa-DkOX36JB.0d810c4085c3db5e9968.png",
+    "static/media/warch.webp": "/Marwanaashraf/Basket-shop/static/media/warch.8fcdcc40da3225a6f6d8.webp",
+    "static/media/beuty.webp": "/Marwanaashraf/Basket-shop/static/media/beuty.34bc0376648cbd1b6fff.webp",
+    "static/media/toast.png": "/Marwanaashraf/Basket-shop/static/media/toast.5aa0b4837a2d89f38b85.png",
+    "static/media/kitchen.webp": "/Marwanaashraf/Basket-shop/static/media/kitchen.5d6cb95d7651b75e3d27.webp",
+    "static/media/coffe.png": "/Marwanaashraf/Basket-shop/static/media/coffe.95cee1362a578275320f.png",
+    "static/media/sunglass.webp": "/Marwanaashraf/Basket-shop/static/media/sunglass.6c1bf3038c3f80619ce3.webp",
+    "static/media/skincare.webp": "/Marwanaashraf/Basket-shop/static/media/skincare.b9f52a618491fb5179eb.webp",
+    "static/media/laptob.webp": "/Marwanaashraf/Basket-shop/static/media/laptob.de9ddd76624d61574a58.webp",
+    "static/media/fa-regular-400.woff2": "/Marwanaashraf/Basket-shop/static/media/fa-regular-400.5632c43107f4d3fa4806.woff2",
+    "static/media/perfuem.webp": "/Marwanaashraf/Basket-shop/static/media/perfuem.7e006d2a1deb62b49233.webp",
+    "static/media/fa-v4compatibility.woff2": "/Marwanaashraf/Basket-shop/static/media/fa-v4compatibility.24fc9d217708cb3f0362.woff2",
+    "index.html": "/Marwanaashraf/Basket-shop/index.html",
+    "main.e1c27227.css.map": "/Marwanaashraf/Basket-shop/static/css/main.e1c27227.css.map",
+    "main.44c262bc.js.map": "/Marwanaashraf/Basket-shop/static/js/main.44c262bc.js.map",
+    "453.dfe4c181.chunk.js.map": "/Marwanaashraf/Basket-shop/static/js/453.dfe4c181.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e1c27227.css",
+    "static/js/main.44c262bc.js"
+  ]
+}
