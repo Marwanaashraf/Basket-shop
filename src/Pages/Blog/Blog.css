@@ -1,0 +1,28 @@
+.MainContent h2{
+font-family: 'Inter', sans-serif;
+
+}
+
+.RecentPosts-item h3{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #202435;
+}
+
+.SocialMedia a{
+    text-decoration: none;
+    font-family: Dosis, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.SocialMedia h3,.WidgetBanner h1,.Tags h3 ,.RecentPosts h3:first-child{
+    font-family: Dosis, sans-serif;
+    font-size: 15PX;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #202435;
+    margin-bottom: 20px;
+}
+

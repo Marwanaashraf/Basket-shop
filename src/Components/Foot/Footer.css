@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* General Footer */
+.footer {
+  background-color: #F7F8FD;
+}
+
+/* Categories */
+.footer-category h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 18px;
+  color: #202435;
+}
+
+.footer-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-category ul li {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #71778E;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .footer-category {
+    text-align: center;
+  }
+}
+
+/* Call */
+.footer-call img {
+  border-radius: 50%;
+  border: 1px solid #E4E5EE;
+  padding: 5px;
+}
+
+.footer-call h3 {
+  font-family: 'Inter', sans-serif;
+  color: #202435;
+}
+
+.footer-call p {
+  font-size: 11px;
+  color: #71778E;
+}
+
+/* Download */
+.footer-download h3 {
+  font-family: 'Inter', sans-serif;
+  color: #202435;
+}
+
+.footer-download p {
+  font-family: 'Inter', sans-serif;
+  color: #71778E;
+}
+
+.footer-social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Bottom */
+.footer-bottom p {
+  font-family: 'Inter', sans-serif;
+  color: #9B9BB4;
+}
+
+.footer-links a {
+  font-family: 'Inter', sans-serif;
+  color: #9B9BB4;
+  text-decoration: none;
+}
+
+.discount{
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+}
+.discount span{
+  border-bottom: 1px solid #FFFFFF;
+}
+.Joinour{
+  font-family: 'Inter', sans-serif;
+  font-size: 26px;
+   color: #FFFFFF;
+}
+
+.Joinouremail{
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+   color: #FFFFFF;
+}
+
