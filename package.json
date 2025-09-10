@@ -2,7 +2,7 @@
   "name": "basket",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Marwanaashraf/Basket-shop",
+"homepage": "https://marwanaashraf.github.io/Basket-shop",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^7.0.0",
