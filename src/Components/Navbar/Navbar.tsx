@@ -7,8 +7,10 @@ import { Ilink } from "../../Interfaces/links";
 import { User } from "../../Context/UserContext";
 import "./Navbar.css";
 import { cartContext } from "../../Context/CartContext";
+import { ProductContext } from "../../Context/ProductContext";
 export default function Navbar() {
   const userContext = useContext(User);
+  let productContext = useContext(ProductContext);
 
   let navigate = useNavigate();
   //profile icon
@@ -246,6 +248,9 @@ export default function Navbar() {
               return (
                 <li key={item.pathName}>
                   <NavLink
+                  onClick={()=>{
+                    productContext?.setProduct(null)
+                  }}
                     className={({ isActive }) =>
                       isActive ? "active-link" : "link"
                     }
