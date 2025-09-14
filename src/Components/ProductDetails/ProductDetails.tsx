@@ -8,7 +8,7 @@ export default function ProductDetails() {
   let [showShare, setShowShare] = useState<boolean>(false);
   //product details
   let productContext = useContext(ProductContext);
-  let url = `${window.location.origin}/Basket-shop/product/${productContext?.productDetails?.id}`;
+  let url = `${window.location.origin}/product/${productContext?.productDetails?.id}`;
   useEffect(() => {
     let productParent = document.querySelector(".product-parent");
     //if click in any thing close product
