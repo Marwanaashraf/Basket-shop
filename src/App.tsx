@@ -48,8 +48,7 @@ export default function App() {
           { path: "*", element: <NotFound /> },
         ],
       },
-    ],
-    { basename: "/Basket-shop" }
+    ]
   );
   return (
     <>
